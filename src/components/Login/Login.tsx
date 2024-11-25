@@ -9,7 +9,7 @@ export const Login = () => {
     setIsLoading(true);
     try {
       await login('alex', 'qwerty');
-      window.location.reload();
+      window.location.href = '/';
     } catch (error) {
       alert('Ошибка авторизации');
     } finally {

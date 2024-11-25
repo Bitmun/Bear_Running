@@ -3,4 +3,5 @@ export interface Jog {
   distance: number;
   time: number;
   date: string;
+  speed: number;
 }
