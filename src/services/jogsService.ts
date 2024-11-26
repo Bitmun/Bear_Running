@@ -9,6 +9,12 @@ export const getJogs = async (): Promise<Jog[]> => {
 
 export const getJog = async (id: string): Promise<Jog> => {
   const response = await api.get(`/jogs/${id}`);
-  const jog = response.data;
+  const { jog } = response.data;
   return jog;
+};
+
+export const createJog = async (
+  jog: Pick<Jog, 'time' | 'distance' | 'date'>,
+): Promise<void> => {
+  await api.post('/jogs', jog);
 };
