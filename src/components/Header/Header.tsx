@@ -1,6 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import filter from '@assets/filter-active.svg';
 
 import styles from './Header.module.scss';
+
+import logo from 'assets/logo-icon.svg';
+import { NavLink } from 'react-router-dom';
+
 export const Header = () => {
-  return <header className={styles.header}>Header</header>;
+  const token = localStorage.getItem('accessToken');
+  const [showFilter, setShowFilter] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={styles.logoWrapper}>
+        <img src={logo} alt="logo" />
+        <div>LOGOBEAR</div>
+      </div>
+      {token && (
+        <>
+          <nav className={`${styles.navLinks} ${isMenuOpen ? styles.open : ''}`}>
+            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : '')}>
+              JOGS
+            </NavLink>
+            <NavLink
+              to="/info"
+              className={({ isActive }) => (isActive ? styles.active : '')}
+            >
+              INFO
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? styles.active : '')}
+            >
+              CONTACT US
+            </NavLink>
+            <button
+              className={styles.iconButton}
+              onClick={() => setShowFilter(!showFilter)}
+            >
+              <img src={filter} alt="Filter" />
+            </button>
+          </nav>
+          <button className={styles.burgerMenu} onClick={toggleMenu}>
+            ☰
+          </button>
+        </>
+      )}
+    </header>
+  );
 };

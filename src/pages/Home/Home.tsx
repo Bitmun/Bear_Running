@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { JogsList } from 'components/JogsList/JogsList';
+import styles from './Home.module.scss';
+
+import { JogsList } from 'components';
 import { useNavigate } from 'react-router-dom';
 import { getJogs } from 'services/jogsService';
 import { Jog } from 'services/type';
@@ -26,7 +28,7 @@ export const Home = () => {
   }
 
   return (
-    <div>
+    <main className={styles.mainWrapper}>
       <JogsList jogs={jogsList} />
       <button
         onClick={() => {
@@ -35,6 +37,6 @@ export const Home = () => {
       >
         +
       </button>
-    </div>
+    </main>
   );
 };

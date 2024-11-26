@@ -7,7 +7,7 @@ import { JogTile } from 'components/JogTile/JogTile';
 
 export const JogsList = ({ jogs }: JogsListProps) => {
   return (
-    <div className={styles.jogsList}>
+    <div className={styles.listWrapper}>
       {jogs.map((jog) => (
         <JogTile key={jog.id} jog={jog} />
       ))}

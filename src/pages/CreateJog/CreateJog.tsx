@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createJog } from 'services/jogsService';
 
-export const CreateJog: React.FC = () => {
+export const CreateJog = () => {
   const [distance, setDistance] = useState<number>(0);
   const [time, setTime] = useState<number>(0);
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export const CreateJog: React.FC = () => {
         return;
       }
 
-      const date = new Date();
+      const date = new Date().toISOString();
 
       await createJog({ distance, time, date });
       navigate('/');
