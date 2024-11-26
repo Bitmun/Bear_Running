@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import filter from '@assets/filter-active.svg';
+import filter from '@assets/images/filter-active.svg';
 
 import styles from './Header.module.scss';
 
-import logo from 'assets/logo-icon.svg';
+import logo from 'assets/images/logo-icon.svg';
 import { NavLink } from 'react-router-dom';
 
 export const Header = () => {

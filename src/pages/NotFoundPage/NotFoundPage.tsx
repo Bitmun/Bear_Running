@@ -6,10 +6,10 @@ export const NotFoundPage = () => {
   return (
     <div className={styles.pageWrapper}>
       <h1>404</h1>
-      <p>
+      <h2>
         Ooops... I deem this page does not exist. Anyway, while you are here, reread
         Belarus anthem:
-      </p>
+      </h2>
       <p>
         Мы, беларусы — мірныя людзі,
         <br />

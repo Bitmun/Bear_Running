@@ -1,0 +1,50 @@
+@import "@styles/_variables.scss";
+
+.pageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+}
+
+.boxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  max-width: 400px;
+  min-width: 200px;
+  padding: 40px 60px;
+  margin: 20px;
+  text-align: center;
+  background-color: $baby-pirple;
+  border-radius: 36px;
+
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 20px 34px 19px;
+    background: transparent;
+    color: $white;
+    border: 3px solid $white;
+    border-radius: 36px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: $baby-pirple-dark
+  }
+
+  button:disabled {
+    cursor: default;
+    background-color: $baby-pirple-light;
+  }
+}

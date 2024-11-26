@@ -1,5 +1,11 @@
+@font-face {
+  font-family: SFUIText;
+  src: url(./assets/fonts/SFUIText-Regular.ttf);
+}
+
 body {
   margin: 0;
+  font-family: SFUIText;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

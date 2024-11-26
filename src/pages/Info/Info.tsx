@@ -3,8 +3,8 @@ import React from 'react';
 import styles from './Info.module.scss';
 export const Info = () => {
   return (
-    <div className={styles.infoWrapper}>
-      <h1>Info</h1>
+    <main className={styles.infoWrapper}>
+      <h1 className={styles.infoHeader}>INFO</h1>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when
@@ -21,6 +21,6 @@ export const Info = () => {
         that it has a more-or-less normal distribution of letters, as opposed to using
         &apos;Content here, content here&apos;, making it look like readable English.
       </p>
-    </div>
+    </main>
   );
 };

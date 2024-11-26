@@ -30,7 +30,7 @@ export const CreateJog = () => {
   };
 
   return (
-    <div>
+    <main>
       <form>
         <div>
           <label>
@@ -65,6 +65,6 @@ export const CreateJog = () => {
           </button>
         </div>
       </form>
-    </div>
+    </main>
   );
 };

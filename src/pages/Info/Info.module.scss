@@ -1,0 +1,13 @@
+@import "@styles/_variables.scss";
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 85px 30%;
+}
+
+.infoHeader {
+  color: $apple-green;
+  margin-bottom: 0;
+}
