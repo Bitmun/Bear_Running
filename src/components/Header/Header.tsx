@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import filter from '@assets/images/filter-active.svg';
+import { Burger } from '@components/Burger/Burger';
 
 import styles from './Header.module.scss';
 
@@ -30,34 +31,43 @@ export const Header = () => {
         <div>LOGOBEAR</div>
       </button>
       {token && (
-        <>
+        <div className={styles.navWrapper}>
           <nav className={`${styles.navLinks} ${isMenuOpen ? styles.open : ''}`}>
-            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : '')}>
+            <NavLink
+              onClick={toggleMenu}
+              to="/"
+              className={({ isActive }) => (isActive ? styles.active : '')}
+            >
               JOGS
             </NavLink>
             <NavLink
+              onClick={toggleMenu}
               to="/info"
               className={({ isActive }) => (isActive ? styles.active : '')}
             >
               INFO
             </NavLink>
             <NavLink
+              onClick={toggleMenu}
               to="/contact"
               className={({ isActive }) => (isActive ? styles.active : '')}
             >
               CONTACT US
             </NavLink>
+          </nav>
+          <div className={styles.iconsWrapper}>
             <button
               className={styles.iconButton}
               onClick={() => setShowFilter(!showFilter)}
             >
               <img src={filter} alt="Filter" />
             </button>
-          </nav>
-          <button className={styles.burgerMenu} onClick={toggleMenu}>
-            ☰
-          </button>
-        </>
+            <button className={styles.burgerButton} onClick={toggleMenu}>
+              ☰
+            </button>
+          </div>
+          <Burger isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
+        </div>
       )}
     </header>
   );

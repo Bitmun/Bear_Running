@@ -1,11 +1,14 @@
 import React from 'react';
 
+import chill from '@assets/images/chill.jpg';
+
 import styles from './NotFoundPage.module.scss';
 
 export const NotFoundPage = () => {
   return (
     <div className={styles.pageWrapper}>
       <h1>404</h1>
+      <img src={chill} alt="chill" />
       <h2>
         Ooops... I deem this page does not exist. Anyway, while you are here, reread
         Belarus anthem:

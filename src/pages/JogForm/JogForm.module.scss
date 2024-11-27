@@ -23,10 +23,15 @@
     background: transparent;
     border: none;
     align-self: flex-end;
+    cursor: pointer;
 
     img {
       width: 18pt;
       height: 18pt;
+    }
+
+    :hover {
+      background-color: $trans-apple-green;
     }
   }
 

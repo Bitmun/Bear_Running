@@ -10,7 +10,6 @@
   background-color: $apple-green;
 
   button {
-    color: $white;
     background: none;
     border: none;
     cursor: pointer;
@@ -22,6 +21,12 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  color: $white;
+}
+
+.navWrapper{
+  display: flex;
+  gap: 15px  ;
 }
 
 .navLinks {
@@ -57,37 +62,25 @@
   }
 }
 
-.burgerMenu {
+.burgerButton {
   display: none;
-  font-size: 24px;
-  background: none;
-  border: none;
-  cursor: pointer;
 }
+
 
 @media (max-width: 480px) {
   .navLinks {
     display: none;
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    flex-direction: column;
-    padding: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    a {
-      color: black;
-    }
-
-    &.open {
-      display: flex;
-    }
   }
 
-  .burgerMenu {
+  .iconsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burgerButton {
     display: block;
+    font-size: 28px;
   }
+
 }
