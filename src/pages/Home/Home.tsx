@@ -2,23 +2,33 @@ import React, { useEffect, useState } from 'react';
 
 import addJogIcon from '@assets/images/add-jog-icon.svg';
 import sadFaceIcon from '@assets/images/sad-face-icon.svg';
+import { FilterPanel } from '@components/FilterPanel/FilterPanel';
+import { filterJogsByDate } from '@utils/filters/jogsFilter';
 
 import styles from './Home.module.scss';
+import { DateRange } from './type';
 
 import { JogsList } from 'components';
+import { useFilterPanel } from 'contexts/FilterContext';
 import { useNavigate } from 'react-router-dom';
 import { getJogs } from 'services/jogsService';
 import { Jog } from 'services/type';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [jogsList, setJogsList] = useState<Jog[]>([]);
+  const [defaultJogList, setDefaultJogList] = useState<Jog[]>([]);
+  const [jogsListToDisplay, setJogsListToDisplay] = useState<Jog[]>([]);
+  const { showFilterPanel } = useFilterPanel();
+  const [dateRange, setDateRange] = useState<DateRange>({ from: '', to: '' });
+
   const navigate = useNavigate();
 
   useEffect(() => {
     getJogs()
       .then((jogs) => {
-        setJogsList(jogs);
+        setDefaultJogList(jogs);
+        const filteredJogs = filterJogsByDate(jogs, dateRange);
+        setJogsListToDisplay(filteredJogs);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -27,13 +37,19 @@ export const Home = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const filteredJogs = filterJogsByDate(defaultJogList, dateRange);
+    setJogsListToDisplay(filteredJogs);
+  }, [dateRange]);
+
   if (isLoading) {
     return <h1 className={styles.loadingWrapper}>Loading your jogs...</h1>;
   }
 
-  if (jogsList.length === 0) {
+  if (jogsListToDisplay.length === 0) {
     return (
       <main className={styles.noJogsWrapper}>
+        {showFilterPanel && <FilterPanel setDateRange={setDateRange} />}
         <div className={styles.sadFaceWrapper}>
           <img src={sadFaceIcon} alt="sad-face-logo" />
           <h1>Nothing is here</h1>
@@ -51,7 +67,8 @@ export const Home = () => {
 
   return (
     <main className={styles.mainWrapper}>
-      <JogsList jogs={jogsList} setJogs={setJogsList} />
+      {showFilterPanel && <FilterPanel setDateRange={setDateRange} />}
+      <JogsList jogs={jogsListToDisplay} setJogs={setJogsListToDisplay} />
       <div className={styles.addJogButtonWrapper}>
         <button
           className={styles.addJogButton}

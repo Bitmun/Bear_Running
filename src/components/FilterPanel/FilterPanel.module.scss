@@ -1,0 +1,53 @@
+@import "@styles/_variables.scss";
+
+.filterPanelWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: $light-gray;
+  padding: 15px;
+}
+
+.filterPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+  text-wrap: nowrap;
+}
+
+.inputsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+  gap: 15px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  input {
+    width: 100%;
+    max-width: 150px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+  }
+}
+
+@media (max-width: 570px) {
+  .inputWrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

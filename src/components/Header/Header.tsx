@@ -6,12 +6,13 @@ import { Burger } from '@components/Burger/Burger';
 import styles from './Header.module.scss';
 
 import logo from 'assets/images/logo-icon.svg';
+import { useFilterPanel } from 'contexts/FilterContext';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const token = localStorage.getItem('accessToken');
-  const [showFilter, setShowFilter] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setShowFilterPanel } = useFilterPanel();
 
   const navigate = useNavigate();
 
@@ -58,7 +59,7 @@ export const Header = () => {
           <div className={styles.iconsWrapper}>
             <button
               className={styles.iconButton}
-              onClick={() => setShowFilter(!showFilter)}
+              onClick={() => setShowFilterPanel((prev) => !prev)}
             >
               <img src={filter} alt="Filter" />
             </button>

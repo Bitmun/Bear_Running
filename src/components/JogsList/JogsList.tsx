@@ -9,7 +9,6 @@ import { deleteJog } from 'services/jogsService';
 
 export const JogsList = ({ jogs, setJogs }: JogsListProps) => {
   const navigate = useNavigate();
-
   const handleChange = (id: string) => {
     navigate(`/jogs/update/${id}`);
   };
