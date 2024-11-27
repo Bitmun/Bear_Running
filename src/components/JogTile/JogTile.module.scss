@@ -1,8 +1,45 @@
+@import "@styles/variables.scss";
+
 .tileWrapper{
   display: flex;
+  justify-content: space-between;
   align-items: center;
   min-width: 250px;
   gap: 30px;
   padding: 5%;
   border: 1px;
+}
+
+.disabledTile {
+  opacity: 0.5;
+}
+
+.buttonsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: sp;
+
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+
+    &:not(:disabled):hover {
+      border-radius: 5px;
+      background-color: $light-gray;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}
+
+
+@media (max-width: 480px) {
+  .tileWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid $gray;
+  }
 }

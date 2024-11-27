@@ -1,5 +1,12 @@
 .listWrapper {
   display: flex;
   flex-direction: column;
-  gap: 15px
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+@media (max-width: 480px) {
+  .listWrapper {
+    width: 100%;
+  }
 }

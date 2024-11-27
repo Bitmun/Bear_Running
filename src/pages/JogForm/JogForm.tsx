@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import closeIcon from '@assets/images/close-icon.svg';
+
+import styles from './JogForm.module.scss';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { createJog, getJog, updateJog } from 'services/jogsService';
 import { Jog } from 'services/type';
@@ -22,7 +26,7 @@ export const JogForm = () => {
           setDate(date.split('T')[0]);
         })
         .catch(() => {
-          alert('Error fetching jog data');
+          navigate('/not-found');
         })
         .finally(() => {
           setIsLoading(false);
@@ -30,14 +34,13 @@ export const JogForm = () => {
     }
   }, [id]);
 
-  const handleSave = async () => {
+  const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       if (distance <= 0 || time <= 0 || !date) {
         alert('All values must be, and be > 0');
         return;
       }
-
-      console.log(date);
 
       const formattedDate = new Date(date).toISOString();
 
@@ -51,6 +54,8 @@ export const JogForm = () => {
     } catch (e) {
       console.log(e);
       alert('Error while processing form');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,56 +63,52 @@ export const JogForm = () => {
     navigate('/');
   };
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
-    <main>
-      <form>
-        <div>
-          <label>
-            Distance:
-            <input
-              type="number"
-              value={distance}
-              onChange={(e) => setDistance(Number(e.target.value))}
-              min="0"
-              required
-            />
-          </label>
+    <main className={`${styles.pageWrapper} ${isLoading ? styles.loadingForm : ''}`}>
+      <form className={styles.formWrapper}>
+        <button className={styles.cancelButton} type="button" onClick={handleCancel}>
+          <img src={closeIcon} alt="cancel" />
+        </button>
+        <div className={styles.fieldWrapper}>
+          <label htmlFor="distance"> Distance</label>
+          <input
+            type="number"
+            id="distance"
+            value={distance}
+            onChange={(e) => setDistance(Number(e.target.value))}
+            min="0"
+            required
+          />
         </div>
-        <div>
-          <label>
-            Time:
-            <input
-              type="number"
-              value={time}
-              onChange={(e) => setTime(Number(e.target.value))}
-              min="0"
-              required
-            />
-          </label>
+        <div className={styles.fieldWrapper}>
+          <label htmlFor="time">Time</label>
+          <input
+            type="number"
+            id="time"
+            value={time}
+            onChange={(e) => setTime(Number(e.target.value))}
+            min="0"
+            required
+          />
         </div>
-        <div>
-          <label>
-            Date:
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              required
-            />
-          </label>
+        <div className={styles.fieldWrapper}>
+          <label htmlFor="date">Date</label>
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
         </div>
-        <div>
-          <button type="button" onClick={handleSave}>
-            Save
-          </button>
-          <button type="button" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
+        <button
+          className={styles.saveButton}
+          type="submit"
+          onClick={handleSubmit}
+          disabled={isLoading}
+        >
+          Save
+        </button>
       </form>
     </main>
   );

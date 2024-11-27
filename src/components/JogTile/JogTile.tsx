@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import deleteIcon from '@assets/images/delete-icon.svg';
+import editIcon from '@assets/images/edit-icon.svg';
 import jogIcon from '@assets/images/jog-icon.svg';
 
 import styles from './JogTile.module.scss';
@@ -9,6 +11,7 @@ import { formatDate } from 'utils';
 
 export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
   const { distance, time, date, speed, id } = jog;
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const formattedDate = formatDate(date);
 
@@ -16,12 +19,14 @@ export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
     handleChange(id);
   };
 
-  const handleDeleteClick = () => {
-    handleDelete(id);
+  const handleDeleteClick = async () => {
+    setIsDisabled(true);
+    await handleDelete(id);
+    setIsDisabled(false);
   };
 
   return (
-    <div className={styles.tileWrapper}>
+    <div className={`${styles.tileWrapper} ${isDisabled ? styles.disabledTile : ''}`}>
       <img src={jogIcon} alt="jog-logo" />
       <div className={styles.statsWrapper}>
         <div>{formattedDate}</div>
@@ -29,9 +34,13 @@ export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
         <div>Distance: {distance}</div>
         <div>Time: {time}</div>
       </div>
-      <div>
-        <button onClick={handleEditClick}>Edit</button>
-        <button onClick={handleDeleteClick}>Delete</button>
+      <div className={styles.buttonsWrapper}>
+        <button onClick={handleEditClick} disabled={isDisabled}>
+          <img src={editIcon} alt="edit-icon" />
+        </button>
+        <button onClick={handleDeleteClick} disabled={isDisabled}>
+          <img src={deleteIcon} alt="delete-icon" />
+        </button>
       </div>
     </div>
   );

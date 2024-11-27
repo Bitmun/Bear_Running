@@ -5,12 +5,14 @@ import filter from '@assets/images/filter-active.svg';
 import styles from './Header.module.scss';
 
 import logo from 'assets/images/logo-icon.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const token = localStorage.getItem('accessToken');
   const [showFilter, setShowFilter] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,10 +20,15 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logoWrapper}>
+      <button
+        className={styles.logoWrapper}
+        onClick={() => {
+          navigate('/');
+        }}
+      >
         <img src={logo} alt="logo" />
         <div>LOGOBEAR</div>
-      </div>
+      </button>
       {token && (
         <>
           <nav className={`${styles.navLinks} ${isMenuOpen ? styles.open : ''}`}>

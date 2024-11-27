@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import styles from './JogsList.module.scss';
 import { JogsListProps } from './type';
@@ -7,9 +7,7 @@ import { JogTile } from 'components/JogTile/JogTile';
 import { useNavigate } from 'react-router-dom';
 import { deleteJog } from 'services/jogsService';
 
-export const JogsList = ({ jogs: initialJogs }: JogsListProps) => {
-  const [jogs, setJogs] = useState(initialJogs);
-
+export const JogsList = ({ jogs, setJogs }: JogsListProps) => {
   const navigate = useNavigate();
 
   const handleChange = (id: string) => {
@@ -19,7 +17,7 @@ export const JogsList = ({ jogs: initialJogs }: JogsListProps) => {
   const handleDelete = async (id: string) => {
     try {
       await deleteJog(id);
-      setJogs(jogs.filter((jog) => jog.id !== id));
+      setJogs((prevJogs) => prevJogs.filter((jog) => jog.id !== id));
     } catch (e) {
       console.log(e);
       alert('Error deleting jog');

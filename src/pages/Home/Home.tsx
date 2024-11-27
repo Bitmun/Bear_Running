@@ -51,7 +51,7 @@ export const Home = () => {
 
   return (
     <main className={styles.mainWrapper}>
-      <JogsList jogs={jogsList} />
+      <JogsList jogs={jogsList} setJogs={setJogsList} />
       <div className={styles.addJogButtonWrapper}>
         <button
           className={styles.addJogButton}
