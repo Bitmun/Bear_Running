@@ -7,10 +7,18 @@ import { JogTileProps } from './type';
 
 import { formatDate } from 'utils';
 
-export const JogTile = ({ jog }: JogTileProps) => {
-  const { distance, time, date, speed } = jog;
+export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
+  const { distance, time, date, speed, id } = jog;
 
   const formattedDate = formatDate(date);
+
+  const handleEditClick = () => {
+    handleChange(id);
+  };
+
+  const handleDeleteClick = () => {
+    handleDelete(id);
+  };
 
   return (
     <div className={styles.tileWrapper}>
@@ -20,6 +28,10 @@ export const JogTile = ({ jog }: JogTileProps) => {
         <div>Speed: {speed}</div>
         <div>Distance: {distance}</div>
         <div>Time: {time}</div>
+      </div>
+      <div>
+        <button onClick={handleEditClick}>Edit</button>
+        <button onClick={handleDeleteClick}>Delete</button>
       </div>
     </div>
   );
