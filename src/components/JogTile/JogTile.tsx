@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import deleteIcon from '@assets/images/delete-icon.svg';
 import editIcon from '@assets/images/edit-icon.svg';
 import jogIcon from '@assets/images/jog-icon.svg';
+import { formatDate } from '@utils/index';
 
 import styles from './JogTile.module.scss';
 import { JogTileProps } from './type';
-
-import { formatDate } from 'utils';
 
 export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
   const { distance, time, date, speed, id } = jog;
