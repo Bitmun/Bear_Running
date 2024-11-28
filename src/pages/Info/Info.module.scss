@@ -11,3 +11,9 @@
   color: $apple-green;
   margin-bottom: 0;
 }
+
+@media (max-width: 768px) {
+  .infoWrapper {
+    padding: 10%;
+  }
+}

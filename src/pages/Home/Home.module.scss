@@ -64,10 +64,8 @@
     border: none;
   }
 
-  &:hover {
-    img {
-      border-radius: 100%;
-      background-color: $trans-apple-green;
-    }
+  img:hover {
+    border-radius: 100%;
+    background-color: $trans-apple-green;
   }
 }
