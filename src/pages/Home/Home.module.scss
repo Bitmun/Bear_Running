@@ -18,8 +18,8 @@
     }
 
     h1 {
-      color: $gray;
       margin-top: 20%;
+      color: $gray;
     }
   }
 
@@ -56,18 +56,18 @@
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-}
 
-.addJogButton {
-  margin: 0 5%;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
+  .addJogButton {
+    margin: 0 5%;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
 
-.addJogButton:hover {
-  img {
-    border-radius: 100%;
-    background-color: $trans-apple-green;
+  &:hover {
+    img {
+      border-radius: 100%;
+      background-color: $trans-apple-green;
+    }
   }
 }

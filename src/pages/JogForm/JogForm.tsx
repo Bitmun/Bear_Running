@@ -14,6 +14,7 @@ export const JogForm = () => {
   const [time, setTime] = useState<number>(0);
   const [date, setDate] = useState<string>(new Date().toISOString().split('T')[0]);
   const [isLoading, setIsLoading] = useState<boolean>(!!id);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,7 +67,12 @@ export const JogForm = () => {
   return (
     <main className={`${styles.pageWrapper} ${isLoading ? styles.loadingForm : ''}`}>
       <form className={styles.formWrapper}>
-        <button className={styles.cancelButton} type="button" onClick={handleCancel}>
+        <button
+          className={styles.cancelButton}
+          type="button"
+          onClick={handleCancel}
+          disabled={isLoading}
+        >
           <img src={closeIcon} alt="cancel" />
         </button>
         <div className={styles.fieldWrapper}>
@@ -78,6 +84,7 @@ export const JogForm = () => {
             onChange={(e) => setDistance(Number(e.target.value))}
             min="0"
             required
+            disabled={isLoading}
           />
         </div>
         <div className={styles.fieldWrapper}>
@@ -89,6 +96,7 @@ export const JogForm = () => {
             onChange={(e) => setTime(Number(e.target.value))}
             min="0"
             required
+            disabled={isLoading}
           />
         </div>
         <div className={styles.fieldWrapper}>
@@ -99,6 +107,7 @@ export const JogForm = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
+            disabled={isLoading}
           />
         </div>
         <button

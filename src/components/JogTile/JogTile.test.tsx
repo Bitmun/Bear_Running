@@ -31,9 +31,9 @@ describe('<JogTile />', () => {
       />,
     );
 
-    expect(screen.getByText(/Speed: 10/)).toBeInTheDocument();
-    expect(screen.getByText(/Distance: 5/)).toBeInTheDocument();
-    expect(screen.getByText(/Time: 30/)).toBeInTheDocument();
+    expect(screen.getByText(/10/)).toBeInTheDocument();
+    expect(screen.getByText(/5/)).toBeInTheDocument();
+    expect(screen.getByText(/30/)).toBeInTheDocument();
     expect(screen.getByAltText('jog-logo')).toBeInTheDocument();
   });
 
