@@ -7,7 +7,7 @@ import styles from './Home.module.scss';
 import { DateRange } from './type';
 
 import { FilterPanel, JogsList } from 'components';
-import { useFilterPanel } from 'contexts/FilterContext/FilterContext';
+import { useFilterPanel } from 'hooks';
 import { useNavigate } from 'react-router-dom';
 import { getJogs } from 'services/jogsService';
 import { Jog } from 'services/type';
