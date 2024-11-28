@@ -32,8 +32,9 @@ export const Home = () => {
         setIsLoading(false);
       })
       .catch((e) => {
-        console.log(e);
-        alert('Some jogs loading error. Try later...');
+        if (e.response?.status != 401) {
+          alert('Some jogs loading error. Try later...');
+        }
       });
   }, []);
 
