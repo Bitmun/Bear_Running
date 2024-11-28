@@ -1,4 +1,3 @@
-// src/services/jogsService.test.ts
 import { api } from './api';
 import { createJog, deleteJog, getJog, getJogs, updateJog } from './jogsService';
 

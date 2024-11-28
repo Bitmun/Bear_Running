@@ -14,8 +14,6 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { showFilterPanel, setShowFilterPanel } = useFilterPanel();
 
-  console.log(showFilterPanel);
-
   const navigate = useNavigate();
 
   const toggleMenu = () => {
