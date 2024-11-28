@@ -6,7 +6,7 @@ import { Burger } from '@components/Burger/Burger';
 import styles from './Header.module.scss';
 
 import logo from 'assets/images/logo-icon.svg';
-import { useFilterPanel } from 'contexts/FilterContext';
+import { useFilterPanel } from 'hooks';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 export const Header = () => {

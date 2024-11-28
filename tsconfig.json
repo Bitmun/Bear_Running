@@ -21,7 +21,9 @@
       "@components/*": ["./components/*"],
       "@assets/*": ["./assets/*"],
       "@pages/*": ["./pages/*"],
-      "@utils/*": ["./utils/*"]
+      "@utils/*": ["./utils/*"],
+      "@contexts/*": ["./contexts/*"],
+      "@hooks/*": ["./hooks/*"],
     }
   },
   "include": ["src"],

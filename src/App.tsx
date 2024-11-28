@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { Header } from 'components';
-import { FilterPanelProvider } from 'contexts/FilterContext';
+import { FilterProvider } from 'contexts';
 import { Home, Info, JogForm, Login, NotFoundPage } from 'pages';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 export const App = () => {
   return (
     <Router>
-      <FilterPanelProvider>
+      <FilterProvider>
         <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -18,7 +18,7 @@ export const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-      </FilterPanelProvider>
+      </FilterProvider>
     </Router>
   );
 };
