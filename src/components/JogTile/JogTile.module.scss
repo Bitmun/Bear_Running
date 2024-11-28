@@ -1,8 +1,8 @@
 @import "@styles/variables.scss";
 
 .tileWrapper{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
   min-width: 250px;
   gap: 30px;
@@ -12,6 +12,11 @@
 
 .disabledTile {
   opacity: 0.5;
+}
+
+.statsWrapper {
+  text-wrap: wrap;
+  text-overflow: ellipsis
 }
 
 .buttonsWrapper {
@@ -33,6 +38,11 @@
       cursor: default;
     }
   }
+}
+
+.lightText {
+  font-size: 14px;
+  color: $gray;
 }
 
 

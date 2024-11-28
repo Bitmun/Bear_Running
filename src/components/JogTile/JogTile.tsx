@@ -28,10 +28,19 @@ export const JogTile = ({ jog, handleChange, handleDelete }: JogTileProps) => {
     <div className={`${styles.tileWrapper} ${isDisabled ? styles.disabledTile : ''}`}>
       <img src={jogIcon} alt="jog-logo" />
       <div className={styles.statsWrapper}>
-        <div>{formattedDate}</div>
-        <div>Speed: {speed}</div>
-        <div>Distance: {distance}</div>
-        <div>Time: {time}</div>
+        <div>
+          <span className={styles.lightText}>{formattedDate}</span>
+        </div>
+        <div>
+          <strong>Speed:</strong> <span className={styles.lightText}>{speed}</span>
+        </div>
+        <div>
+          <strong>Distance:</strong>
+          <span className={styles.lightText}> {distance} km</span>
+        </div>
+        <div>
+          <strong>Time:</strong> <span className={styles.lightText}> {time} h</span>
+        </div>
       </div>
       <div className={styles.buttonsWrapper}>
         <button onClick={handleEditClick} disabled={isDisabled}>

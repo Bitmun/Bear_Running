@@ -70,7 +70,7 @@ export const JogForm = () => {
           <img src={closeIcon} alt="cancel" />
         </button>
         <div className={styles.fieldWrapper}>
-          <label htmlFor="distance"> Distance</label>
+          <label htmlFor="distance">Distance (km)</label>
           <input
             type="number"
             id="distance"
@@ -81,7 +81,7 @@ export const JogForm = () => {
           />
         </div>
         <div className={styles.fieldWrapper}>
-          <label htmlFor="time">Time</label>
+          <label htmlFor="time">Time (h)</label>
           <input
             type="number"
             id="time"

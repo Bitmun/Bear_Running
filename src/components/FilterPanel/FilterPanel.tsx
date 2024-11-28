@@ -11,11 +11,33 @@ export const FilterPanel = ({ setDateRange }: FilterPanelProps) => {
     setDateRange({ from: fromDate, to: toDate });
   };
 
+  const cancelFilter = () => {
+    setFromDate('');
+    setToDate('');
+    setDateRange({ from: '', to: '' });
+  };
+
   useEffect(() => {
     return () => {
       setDateRange({ from: '', to: '' });
     };
   }, []);
+
+  const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = e.target.value;
+    setFromDate(selectedDate);
+    if (toDate && selectedDate > toDate) {
+      setToDate('');
+    }
+  };
+
+  const handleToDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = e.target.value;
+    setToDate(selectedDate);
+    if (fromDate && selectedDate < fromDate) {
+      setFromDate('');
+    }
+  };
 
   return (
     <div className={styles.filterPanelWrapper}>
@@ -27,7 +49,8 @@ export const FilterPanel = ({ setDateRange }: FilterPanelProps) => {
               id="fromDate"
               type="date"
               value={fromDate}
-              onChange={(e) => setFromDate(e.target.value)}
+              onChange={handleFromDateChange}
+              max={toDate || undefined}
             />
           </div>
           <div className={styles.inputWrapper}>
@@ -36,13 +59,19 @@ export const FilterPanel = ({ setDateRange }: FilterPanelProps) => {
               id="toDate"
               type="date"
               value={toDate}
-              onChange={(e) => setToDate(e.target.value)}
+              onChange={handleToDateChange}
+              min={fromDate || undefined}
             />
           </div>
         </div>
-        <button onClick={applyFilter} className={styles.applyFilter}>
-          Apply
-        </button>
+        <div className={styles.filterButtonsWrapper}>
+          <button onClick={cancelFilter} className={styles.filterButton}>
+            Clear filter
+          </button>
+          <button onClick={applyFilter} className={styles.filterButton}>
+            Apply
+          </button>
+        </div>
       </div>
     </div>
   );
