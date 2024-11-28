@@ -40,7 +40,9 @@ export const FilterPanel = ({ setDateRange }: FilterPanelProps) => {
             />
           </div>
         </div>
-        <button onClick={applyFilter}>Apply</button>
+        <button onClick={applyFilter} className={styles.applyFilter}>
+          Apply
+        </button>
       </div>
     </div>
   );

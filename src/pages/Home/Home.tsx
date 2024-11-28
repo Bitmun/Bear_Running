@@ -46,21 +46,26 @@ export const Home = () => {
     return <h1 className={styles.loadingWrapper}>Loading your jogs...</h1>;
   }
 
+  const isFilterApplied = dateRange.from || dateRange.to;
+
   if (jogsListToDisplay.length === 0) {
     return (
-      <main className={styles.noJogsWrapper}>
+      <main className={styles.mainWrapper}>
         {showFilterPanel && <FilterPanel setDateRange={setDateRange} />}
         <div className={styles.sadFaceWrapper}>
           <img src={sadFaceIcon} alt="sad-face-logo" />
-          <h1>Nothing is here</h1>
+          <h1>{isFilterApplied ? 'No jogs satisfy the filter' : 'No jogs available'}</h1>
         </div>
-        <button
-          onClick={() => {
-            navigate('/jogs/create');
-          }}
-        >
-          Create your first jog
-        </button>
+        {!isFilterApplied && (
+          <button
+            className={styles.createJogButton}
+            onClick={() => {
+              navigate('/jogs/create');
+            }}
+          >
+            Create your first jog
+          </button>
+        )}
       </main>
     );
   }
