@@ -12,7 +12,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 export const Header = () => {
   const token = localStorage.getItem('accessToken');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setShowFilterPanel } = useFilterPanel();
+  const { showFilterPanel, setShowFilterPanel } = useFilterPanel();
+
+  console.log(showFilterPanel);
 
   const navigate = useNavigate();
 
@@ -56,9 +58,13 @@ export const Header = () => {
               CONTACT US
             </NavLink>
           </nav>
-          <div className={styles.iconsWrapper}>
+          <div
+            className={`${styles.iconsWrapper} ${
+              showFilterPanel ? styles.activeFilter : ''
+            }`}
+          >
             <button
-              className={styles.iconButton}
+              className={styles.filterButton}
               onClick={() => setShowFilterPanel((prev) => !prev)}
             >
               <img src={filter} alt="Filter" />

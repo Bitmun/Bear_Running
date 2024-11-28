@@ -45,9 +45,10 @@
   }
 }
 
-@media (max-width: 570px) {
+@media (max-width: 490px) {
   .inputWrapper {
     width: 100%;
+    max-width: 300px;
     justify-content: space-between;
   }
 }
