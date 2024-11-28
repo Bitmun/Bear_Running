@@ -19,7 +19,6 @@ export const Home = () => {
   const [jogsListToDisplay, setJogsListToDisplay] = useState<Jog[]>([]);
   const [dateRange, setDateRange] = useState<DateRange>({ from: '', to: '' });
   const { showFilterPanel } = useFilterPanel();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export const Home = () => {
         setIsLoading(false);
       })
       .catch((e) => {
-        if (e.response?.status != 401) {
+        if (e.response?.status !== 401) {
           alert('Some jogs loading error. Try later...');
         }
       });
@@ -40,7 +39,13 @@ export const Home = () => {
   useEffect(() => {
     const filteredJogs = filterJogsByDate(defaultJogList, dateRange);
     setJogsListToDisplay(filteredJogs);
-  }, [dateRange]);
+  }, [dateRange, defaultJogList]);
+
+  // New function to handle jog deletion
+  const handleDeleteJog = (jogId: string) => {
+    setDefaultJogList((prevJogs) => prevJogs.filter((jog) => jog.id !== jogId));
+    setJogsListToDisplay((prevJogs) => prevJogs.filter((jog) => jog.id !== jogId));
+  };
 
   if (isLoading) {
     return <h1 className={styles.loadingWrapper}>Loading your jogs...</h1>;
@@ -73,7 +78,7 @@ export const Home = () => {
   return (
     <main className={styles.mainWrapper}>
       {showFilterPanel && <FilterPanel setDateRange={setDateRange} />}
-      <JogsList jogs={jogsListToDisplay} setJogs={setJogsListToDisplay} />
+      <JogsList jogs={jogsListToDisplay} onDeleteJog={handleDeleteJog} />
       <div className={styles.addJogButtonWrapper}>
         <button
           className={styles.addJogButton}

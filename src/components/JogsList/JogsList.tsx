@@ -7,7 +7,7 @@ import { JogTile } from 'components/JogTile/JogTile';
 import { useNavigate } from 'react-router-dom';
 import { deleteJog } from 'services/jogsService';
 
-export const JogsList = ({ jogs, setJogs }: JogsListProps) => {
+export const JogsList = ({ jogs, onDeleteJog }: JogsListProps) => {
   const navigate = useNavigate();
   const handleChange = (id: string) => {
     navigate(`/jogs/update/${id}`);
@@ -16,7 +16,7 @@ export const JogsList = ({ jogs, setJogs }: JogsListProps) => {
   const handleDelete = async (id: string) => {
     try {
       await deleteJog(id);
-      setJogs((prevJogs) => prevJogs.filter((jog) => jog.id !== id));
+      onDeleteJog(id);
     } catch (e) {
       console.log(e);
       alert('Error deleting jog');
